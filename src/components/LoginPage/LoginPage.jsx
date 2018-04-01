@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './LoginPage.css';
 import { Login } from '../../services/Request';
+import './LoginPage.css';
+
+import $ from 'jquery'
 
 class LoginPage extends Component {
 
@@ -8,6 +10,49 @@ class LoginPage extends Component {
         email: '',
         password: '',
         remember: false
+    }
+
+    errors = {
+        email: '',
+        password: '4'
+    }
+
+    validate() {
+        var err = false;
+
+        if(this.state.email === '') {
+            this.errors.email = "This field is required"
+            err = !err ? true : err
+        }
+        else if(!this.state.email.includes('@')) {
+            this.errors.email = "Invalid email"
+            err = !err ? true : err
+        }
+        else
+            this.errors.email = ''
+
+        if(this.state.password === '') {
+            this.errors.password = "This field is required"
+            err = !err ? true : err
+        }
+        else
+            this.errors.password = ''
+
+        if(this.errors.email != '') {
+            $('#email').addClass('is-invalid')
+            $('#email>.mdl-textfield__error').text(this.errors.email)
+        }
+        else
+            $('#email').removeClass('is-invalid')
+
+        if(this.errors.password != '') {
+            $('#password').addClass('is-invalid')
+            $('#password>.mdl-textfield__error').text(this.errors.password)
+        }
+        else
+            $('#password').removeClass('is-invalid')
+
+        return err
     }
 
     onChange = (e) => {
@@ -23,24 +68,29 @@ class LoginPage extends Component {
         }
     }
 
-    checkFields() {
-
-    }
-
     onSubmit = (e) => {
         e.preventDefault()
 
-        Login(this.state).then((response) => {
-            if(response.token !== undefined) {
-                localStorage.setItem('token', response.token)
-            }
-            else {
-                console.log("Invalid email or password!")
-            }
-        })
-        .catch((err) => {
-            console.log("Connection error!")
-        })
+        const err = this.validate()
+
+        if(!err) {
+            Login(this.state).then((response) => {
+                if(response.token !== undefined) {
+                    localStorage.setItem('token', response.token)
+                }
+                else if(response.code == 4) {
+                    $('#email').addClass('is-invalid')
+                    $('#email>.mdl-textfield__error').text("Invalid email")
+                }
+                else {
+                    $('#password').addClass('is-invalid')
+                    $('#password>.mdl-textfield__error').text("Invalid password")
+                }
+            })
+            .catch((err) => {
+                console.log("Connection error!")
+            })
+        }
     }
 
     render() {
@@ -53,27 +103,29 @@ class LoginPage extends Component {
                         <div className="mdl-card__title">
                             <h2 className="mdl-card__title-text">Login in</h2>
                         </div>
-                        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+                        <div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
                         <form>
-                            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input className="mdl-textfield__input" type="text" name="email" onChange={this.onChange}/>
+                            <div id="email" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input onChange={this.onChange} className="mdl-textfield__input" type="text" name="email" novalidate/>
                                 <label className="mdl-textfield__label" htmlFor="email">Email</label>
+                                <span class="mdl-textfield__error"></span>
                             </div>
 
-                            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input className="mdl-textfield__input" type="password" name="password" onChange={this.onChange}/>
+                            <div id="password" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" pattern="[A-Z,a-z, ]*" name="password"/>
                                 <label className="mdl-textfield__label" htmlFor="password">Password</label>
+                                <span class="mdl-textfield__error"></span>
                             </div>
 
-                            <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
-                                <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" name="remember" checked={this.state.remember} onChange={e => this.onChange(e)}/>
+                            <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox">
+                                <input checked={this.state.remember} onChange={this.onChange} type="checkbox" id="checkbox" className="mdl-checkbox__input" name="remember"/>
                                 <span className="mdl-checkbox__label">Remember me</span>
                             </label>
 
                             <div className="mdl-grid">
                                 <div className="mdl-layout-spacer"></div>
                                 <div className="mdl-layout-spacer"></div>
-                                <button onClick={this.onSubmit} className="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Sing in</button>
+                                <button onClick={this.onSubmit} id="singin" className="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Sing in</button>
                             </div>
                         </form>
                     </div>

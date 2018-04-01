@@ -1,5 +1,5 @@
 body {
-    background: #eee;
+    background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Cubes-Grey-Seamless-Pattern-For-Website-Background.jpg') repeat;
 }
 
 .demo-card-wide > .mdl-card__title {
@@ -22,4 +22,8 @@ form {
 
 .mdl-button {
     position: relative;
+}
+
+.hidden {
+    visibility: hidden;
 }

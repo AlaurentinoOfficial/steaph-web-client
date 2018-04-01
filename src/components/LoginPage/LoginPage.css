@@ -1,0 +1,25 @@
+body {
+    background: #eee;
+}
+
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+}
+
+.mdl-card {
+    width: 100%;
+}
+
+form {
+    padding: 20px;
+}
+
+.mdl-textfield {
+    width: 100%;
+}
+
+.mdl-button {
+    position: relative;
+}

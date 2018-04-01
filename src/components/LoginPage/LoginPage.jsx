@@ -65,6 +65,8 @@ class LoginPage extends Component {
             this.setState({
                 [e.target.name]: e.target.value
             })
+            
+            $(e.target.parentNode.id).removeClass('is-invalid')
         }
     }
 

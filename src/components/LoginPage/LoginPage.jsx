@@ -114,7 +114,7 @@ class LoginPage extends Component {
                             </div>
 
                             <div id="password" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" pattern="[A-Z,a-z, ]*" name="password"/>
+                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" name="password" novalidate/>
                                 <label className="mdl-textfield__label" htmlFor="password">Password</label>
                                 <span class="mdl-textfield__error"></span>
                             </div>

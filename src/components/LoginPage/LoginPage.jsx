@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { Login } from '../../services/Request';
+import { Redirect } from 'react-router-dom'
 import $ from 'jquery'
 
 import './LoginPage.css';
 
 class LoginPage extends Component {
+
+    constructor(props) {
+        super(props)
+
+        if(localStorage.getItem('token') !== undefined)
+            props.history.push('/dashboard')
+    }
 
     state = {
         email: '',

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 import './index.css';
 
@@ -9,9 +9,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render( (
 <BrowserRouter>
-    <div>
+    <Switch>
         <Route path="/login" component={LoginPage}/>
-    </div>
+    </Switch>
 </BrowserRouter>
 ), document.getElementById('root'));
 registerServiceWorker();

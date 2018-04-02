@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Login } from '../../services/Request';
-import './LoginPage.css';
-
 import $ from 'jquery'
+import MaterialSnackbar from 'material-design-lite'
+
+import './LoginPage.css';
 
 class LoginPage extends Component {
 
@@ -76,6 +77,9 @@ class LoginPage extends Component {
         const err = this.validate()
 
         if(!err) {
+            $('#progressbar').removeClass('hidden')
+
+        setTimeout(() => {
             Login(this.state).then((response) => {
                 if(response.token !== undefined) {
                     localStorage.setItem('token', response.token)
@@ -88,10 +92,21 @@ class LoginPage extends Component {
                     $('#password').addClass('is-invalid')
                     $('#password>.mdl-textfield__error').text("Invalid password")
                 }
+
+                $('#progressbar').addClass('hidden')
             })
             .catch((err) => {
-                console.log("Connection error!")
-            })
+                $('#progressbar').addClass('hidden')
+
+                const snackbarContainer = document.querySelector('#snack').MaterialSnackbar
+                snackbarContainer.showSnackbar({
+                    message: 'Connection error.',
+                    timeout: 7000,
+                    actionHandler: () => { snackbarContainer.cleanup_(); this.onSubmit(e) },
+                    actionText: 'RETRY'
+                })
+            }, 1000)
+        })
         }
     }
 
@@ -105,7 +120,7 @@ class LoginPage extends Component {
                         <div className="mdl-card__title">
                             <h2 className="mdl-card__title-text">Login in</h2>
                         </div>
-                        <div id="p2" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+                        <div id="progressbar" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
                         <form>
                             <div id="email" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input onChange={this.onChange} className="mdl-textfield__input" type="text" name="email" novalidate/>
@@ -133,6 +148,10 @@ class LoginPage extends Component {
                     </div>
                 </div>
                 <div className="mdl-layout-spacer"></div>
+            </div>
+            <div id="snack" class="mdl-js-snackbar mdl-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button class="mdl-snackbar__action" type="button"></button>
             </div>
         </div>
         )

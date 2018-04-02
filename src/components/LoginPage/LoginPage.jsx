@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { Login } from '../../services/Request';
-import { Redirect } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Login } from '../../services/Request'
 import $ from 'jquery'
 
-import './LoginPage.css';
+import './LoginPage.css'
 
 class LoginPage extends Component {
 
     constructor(props) {
         super(props)
 
-        if(localStorage.getItem('token') !== undefined)
+        if(localStorage.getItem('token') !== null)
             props.history.push('/dashboard')
     }
 
@@ -26,7 +25,7 @@ class LoginPage extends Component {
     }
 
     validate() {
-        var err = false;
+        var err = false
 
         if(this.state.email === '') {
             this.errors.email = "This field is required"
@@ -89,6 +88,7 @@ class LoginPage extends Component {
             Login(this.state).then((response) => {
                 if(response.token !== undefined) {
                     localStorage.setItem('token', response.token)
+                    this.props.history.push('/dashboard')
                 }
                 else if(response.code === 4) {
                     $('#email').addClass('is-invalid')

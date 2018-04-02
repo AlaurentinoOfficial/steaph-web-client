@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 
 import LoginPage from './components/LoginPage/LoginPage.jsx'
-import registerServiceWorker from './registerServiceWorker';
+import DashboardPage from './components/DashboardPage/DashboardPage';
 
 ReactDOM.render( (
 <BrowserRouter>
     <Switch>
         <Route path="/login" component={LoginPage}/>
+        <Route path="/dashboard" component={DashboardPage}/>
     </Switch>
 </BrowserRouter>
 ), document.getElementById('root'));

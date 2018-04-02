@@ -13,6 +13,7 @@ ReactDOM.render( (
     <Switch>
         <Route path="/login" component={LoginPage}/>
         <Route path="/dashboard" component={DashboardPage}/>
+        <Route path="*" component={()=>(<h1>Not found</h1>)}/>
     </Switch>
 </BrowserRouter>
 ), document.getElementById('root'));

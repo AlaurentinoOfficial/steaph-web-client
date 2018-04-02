@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Login } from '../../services/Request';
 import $ from 'jquery'
-import MaterialSnackbar from 'material-design-lite'
 
 import './LoginPage.css';
 
@@ -39,14 +38,14 @@ class LoginPage extends Component {
         else
             this.errors.password = ''
 
-        if(this.errors.email != '') {
+        if(this.errors.email !== '') {
             $('#email').addClass('is-invalid')
             $('#email>.mdl-textfield__error').text(this.errors.email)
         }
         else
             $('#email').removeClass('is-invalid')
 
-        if(this.errors.password != '') {
+        if(this.errors.password !== '') {
             $('#password').addClass('is-invalid')
             $('#password>.mdl-textfield__error').text(this.errors.password)
         }
@@ -79,12 +78,11 @@ class LoginPage extends Component {
         if(!err) {
             $('#progressbar').removeClass('hidden')
 
-        setTimeout(() => {
             Login(this.state).then((response) => {
                 if(response.token !== undefined) {
                     localStorage.setItem('token', response.token)
                 }
-                else if(response.code == 4) {
+                else if(response.code === 4) {
                     $('#email').addClass('is-invalid')
                     $('#email>.mdl-textfield__error').text("Invalid email")
                 }
@@ -100,19 +98,18 @@ class LoginPage extends Component {
 
                 const snackbarContainer = document.querySelector('#snack').MaterialSnackbar
                 snackbarContainer.showSnackbar({
-                    message: 'Connection error.',
+                    message: 'Connection offline',
                     timeout: 7000,
                     actionHandler: () => { snackbarContainer.cleanup_(); this.onSubmit(e) },
                     actionText: 'RETRY'
                 })
-            }, 1000)
-        })
+            })
         }
     }
 
     render() {
         return (
-        <div className="">
+        <div className="Login">
             <div className="mdl-grid">
                 <div className="mdl-layout-spacer"></div>
                 <div className="mdl-cell mdl-cell--4-col">
@@ -120,18 +117,20 @@ class LoginPage extends Component {
                         <div className="mdl-card__title">
                             <h2 className="mdl-card__title-text">Login in</h2>
                         </div>
-                        <div id="progressbar" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+                        <div className="progressbar-content">
+                            <div id="progressbar" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+                        </div>
                         <form>
                             <div id="email" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input onChange={this.onChange} className="mdl-textfield__input" type="text" name="email" novalidate/>
+                                <input onChange={this.onChange} className="mdl-textfield__input" type="text" name="email" noValidate/>
                                 <label className="mdl-textfield__label" htmlFor="email">Email</label>
-                                <span class="mdl-textfield__error"></span>
+                                <span className="mdl-textfield__error"></span>
                             </div>
 
                             <div id="password" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" name="password" novalidate/>
+                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" name="password" noValidate/>
                                 <label className="mdl-textfield__label" htmlFor="password">Password</label>
-                                <span class="mdl-textfield__error"></span>
+                                <span className="mdl-textfield__error"></span>
                             </div>
 
                             <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox">
@@ -142,16 +141,16 @@ class LoginPage extends Component {
                             <div className="mdl-grid">
                                 <div className="mdl-layout-spacer"></div>
                                 <div className="mdl-layout-spacer"></div>
-                                <button onClick={this.onSubmit} id="singin" className="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Sing in</button>
+                                <button onClick={this.onSubmit} id="signin" className="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Sign in</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div className="mdl-layout-spacer"></div>
             </div>
-            <div id="snack" class="mdl-js-snackbar mdl-snackbar">
-                <div class="mdl-snackbar__text"></div>
-                <button class="mdl-snackbar__action" type="button"></button>
+            <div id="snack" className="mdl-js-snackbar mdl-snackbar">
+                <div className="mdl-snackbar__text"></div>
+                <button className="mdl-snackbar__action" type="button"></button>
             </div>
         </div>
         )

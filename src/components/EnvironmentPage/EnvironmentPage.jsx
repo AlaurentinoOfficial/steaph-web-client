@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Environments } from '../../services/Request'
+import EnvironemntFragment from '../EnvironmentFragment/EnvironmentFragment'
 
 import './EnvironmentPage.css'
 
@@ -20,7 +21,9 @@ class EnvironmentPage extends Component {
 
             this.state.sections.push((
                 <section className={"mdl-layout__tab-panel" + first} id={e.id}>
-                    <div className="page-content">{e.name}</div>
+                    <div className="page-content">
+                        <EnvironemntFragment env={e} />
+                    </div>
                 </section>
             ))
 

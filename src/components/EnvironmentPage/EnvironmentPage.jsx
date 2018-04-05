@@ -16,11 +16,11 @@ class EnvironmentPage extends Component {
 
         envs.forEach(e => {
             this.state.tabs.push((
-                <a href={'#' + e.id} className={"mdl-layout__tab" + first}>{e.name}</a>
+                <a href={'#' + e._id} className={"mdl-layout__tab" + first}>{e.name}</a>
             ))
 
             this.state.sections.push((
-                <section className={"mdl-layout__tab-panel" + first} id={e.id}>
+                <section className={"mdl-layout__tab-panel" + first} id={e._id}>
                     <div className="page-content">
                         <EnvironemntFragment env={e} />
                     </div>
@@ -70,7 +70,11 @@ class EnvironmentPage extends Component {
                     <main className="mdl-layout__content">
                         {this.state.sections}
                     </main>
-                    </div>
+                </div>
+                <div id="snack" className="mdl-js-snackbar mdl-snackbar">
+                    <div className="mdl-snackbar__text"></div>
+                    <button className="mdl-snackbar__action" type="button"></button>
+                </div>
             </div>
         )
     }

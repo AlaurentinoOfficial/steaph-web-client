@@ -88,7 +88,7 @@ class LoginPage extends Component {
             Login(this.state).then((response) => {
                 if(response.token !== undefined) {
                     localStorage.setItem('token', response.token)
-                    this.props.history.push('/dashboard')
+                    this.props.history.push('/environment')
                 }
                 else if(response.code === 4) {
                     $('#email').addClass('is-invalid')

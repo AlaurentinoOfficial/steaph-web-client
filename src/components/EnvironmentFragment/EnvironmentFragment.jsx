@@ -9,30 +9,6 @@ class EnvironmentFragment extends Component {
         schedule: []
     }
 
-    getSchedules = () => {
-        Schedules(localStorage.getItem('token'), this.props.env._id)
-        .then(json => {
-
-            console.log(json)
-
-            if(json === []) {
-                this.createTable()
-                this.forceUpdate()
-            }
-        })
-    }
-
-    removeSchedule = (id) => {
-        RemoveSchedules(localStorage.getItem('token'), id)
-        .then(json => {
-            const snackbarContainer = document.querySelector('#snack').MaterialSnackbar
-            snackbarContainer.showSnackbar({
-                message: 'Schedule removed with success',
-                timeout: 2000
-            })
-        })
-    }
-
     createTable = (json) => {
         json.forEach(s => {
             this.state.schedule.push((
@@ -40,7 +16,7 @@ class EnvironmentFragment extends Component {
                     <td>{new Date(s.start).getHours() + ":" + new Date(s.start).getMinutes()}</td>
                     <td>{new Date(s.end).getHours() + ":" + new Date(s.end).getMinutes()}</td>
                     <td>
-                        <button onClick={this.removeSchedule(s._id)} className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                        <button onClick={e => this.removeSchedule(e, s._id)} className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                             <i className="material-icons">close</i>
                         </button>
                     </td>
@@ -49,12 +25,35 @@ class EnvironmentFragment extends Component {
         })
     }
 
+    getSchedules = () => {
+        Schedules(localStorage.getItem('token'), this.props.env._id)
+        .then(json => {
+
+            console.log(json)
+
+            if(json) {
+                this.createTable(json)
+                this.forceUpdate()
+            }
+        })
+    }
+
+    removeSchedule = (e, id) => {
+        RemoveSchedules(localStorage.getItem('token'), id)
+        .then(json => {
+            const snackbarContainer = document.querySelector('#snack').MaterialSnackbar
+            snackbarContainer.showSnackbar({
+                message: 'Schedule removed with success',
+                timeout: 4000
+            })
+
+            this.render()
+        })
+    }
+
     componentDidMount() {
         this.getSchedules()
     }
-
-    
-
 
     render() {
         return (

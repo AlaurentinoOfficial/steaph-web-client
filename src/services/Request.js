@@ -28,3 +28,31 @@ exports.Environments = (token) => {
         .catch(err => reject(err))
     })
 }
+
+exports.Schedules = (token, id) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/environment/' + id + '/schedule', {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            }
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}
+
+exports.RemoveSchedules = (token, id) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/schedule/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': token,
+            }
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}

@@ -1,0 +1,10 @@
+.mdl-data-table {
+    width: 100%;
+    position: relative;
+}
+
+.mdl-button--fab {
+    position: relative;
+    right: 0;
+    margin: 16px;
+}

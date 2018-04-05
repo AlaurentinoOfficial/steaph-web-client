@@ -39,8 +39,14 @@ class EnvironmentPage extends Component {
 
         Environments(localStorage.getItem("token"))
         .then(json => {
-            this.createFragments(json)
-            this.forceUpdate()
+            if(json) {
+                this.createFragments(json)
+                this.forceUpdate()
+            }
+            else if(json.code == 1) {
+                localStorage.removeItem('token')
+                this.props.history.push('/login?reirect=/environment')
+            }
         })
     }
 

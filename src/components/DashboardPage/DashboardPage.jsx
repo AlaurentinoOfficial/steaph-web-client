@@ -22,7 +22,7 @@ class DashboardPage extends Component {
                 environments={[{name: "Environment 1", uuid: "sfjgsdfjasdgfjads", class: 'active'}]}>
                 <div className="Dashboard">
                     <div className="container">
-                        fg
+                        hj
                     </div>
                 </div>
             </Sidebar>

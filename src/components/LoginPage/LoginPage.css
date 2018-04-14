@@ -1,36 +1,117 @@
 body {
-    background: #f5f5f5;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #0747A6 !important;
 }
 
-.demo-card-wide {
-    margin-top: 50px;
+.login-page {
+    width: 400px;
+    margin: 90px auto 30px auto;
+
+    overflow: hidden;
 }
 
-.demo-card-wide > .mdl-card__title {
+.login-head {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+
+    background: transparent !important;
     color: #fff;
-    height: 176px;
-    background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
 }
 
-.mdl-card {
+.login-body {
+    padding: 50px;
+    margin: 20px auto 20px auto;
+
+    background: #fff;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin: 0 !important;
+}
+
+.form-group input.form-control {
     width: 100%;
+    height: 40px;
+
+    color: #444;
+    background-color: #eee;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+
+    -webkit-transition: 0.2s ease-in-out;
+    -ms-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 
-form {
-    padding: 20px;
+.form-group input.form-control::-moz-placeholder,
+.form-group input.form-control:-ms-input-placeholder,
+.form-group input.form-control::-webkit-input-placeholder {
+    color: #707781;
 }
 
-.mdl-textfield {
+.form-group input.form-control:focus {
+    background-color: #fff;
+    border-color: #3498db;
+}
+
+.form-actions button {
     width: 100%;
+    padding: 10px;
+
+    background-color: #0747A6 !important;
+    color: #fff;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    border: none;
+    border-radius: 4px;
+
+    -webkit-transition: 0.2s ease-out;
+    -ms-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+}
+  
+.form-actions button:hover {
+    background-color: rgb(11, 62, 138) !important;
 }
 
-.hidden {
+.login-footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background: transparent !important;
+}
+
+.login-footer a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+}
+  
+.login-footer a:hover {
+    color: #fafafa;
+}
+
+.is-invalid > .form-text-error {
+    visibility: visible;
+}
+
+.form-text-error {
+    display: inline;
     visibility: hidden;
-    display: block;
-}
-
-.progressbar-content {
-    display: block;
-    position: relative;
-    height: 10px;
+    color: #e74c3c;
 }

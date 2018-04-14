@@ -10,13 +10,13 @@ class LoginPage extends Component {
         super(props)
 
         if(localStorage.getItem('token') !== null)
-            props.history.push('/dashboard')
+            props.history.push('/environment')
     }
 
     state = {
         email: '',
         password: '',
-        remember: false
+        remember: true
     }
 
     errors = {
@@ -47,14 +47,14 @@ class LoginPage extends Component {
 
         if(this.errors.email !== '') {
             $('#email').addClass('is-invalid')
-            $('#email>.mdl-textfield__error').text(this.errors.email)
+            $('#email>.form-text-error').text(this.errors.email)
         }
         else
             $('#email').removeClass('is-invalid')
 
         if(this.errors.password !== '') {
             $('#password').addClass('is-invalid')
-            $('#password>.mdl-textfield__error').text(this.errors.password)
+            $('#password>.form-text-error').text(this.errors.password)
         }
         else
             $('#password').removeClass('is-invalid')
@@ -73,7 +73,7 @@ class LoginPage extends Component {
                 [e.target.name]: e.target.value
             })
             
-            $(e.target.parentNode.id).removeClass('is-invalid')
+            $("#" + e.target.parentNode.id).removeClass('is-invalid')
         }
     }
 
@@ -92,11 +92,11 @@ class LoginPage extends Component {
                 }
                 else if(response.code === 4) {
                     $('#email').addClass('is-invalid')
-                    $('#email>.mdl-textfield__error').text("Invalid email")
+                    $('#email>.form-text-error').text("Invalid email")
                 }
                 else {
                     $('#password').addClass('is-invalid')
-                    $('#password>.mdl-textfield__error').text("Invalid password")
+                    $('#password>.form-text-error').text("Invalid password")
                 }
 
                 $('#progressbar').addClass('hidden')
@@ -118,44 +118,32 @@ class LoginPage extends Component {
     render() {
         return (
         <div className="Login">
-            <div className="mdl-grid">
-                <div className="mdl-layout-spacer"></div>
-                <div className="mdl-cell mdl-cell--4-col">
-                    <div className="demo-card-wide mdl-card mdl-shadow--2dp">
-                        <div className="mdl-card__title">
-                            <h2 className="mdl-card__title-text">Login in</h2>
+            <div className="container">
+				<div className="login-page">
+					<div className="login-head">
+					STEAPH
+					</div>
+					<div className="login-body">
+					<form>
+						<div className="form-group" id="email">
+						    <input onChange={e => this.onChange(e)} value={this.state.email} className="form-control placeholder-no-fix" type="email" autoComplete="off" placeholder="Email" name="email"/>
+                            <span className="form-text-error">e</span>
                         </div>
-                        <div className="progressbar-content">
-                            <div id="progressbar" className="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
+						<div className="form-group" id="password">
+						    <input onChange={e => this.onChange(e)} value={this.state.password} className="form-control placeholder-no-fix" type="password" autoComplete="off" placeholder="Password" name="password"/>
+                            <span className="form-text-error">e</span>
                         </div>
-                        <form>
-                            <div id="email" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input onChange={this.onChange} className="mdl-textfield__input" type="text" name="email" noValidate/>
-                                <label className="mdl-textfield__label" htmlFor="email">Email</label>
-                                <span className="mdl-textfield__error"></span>
-                            </div>
+						<div className="form-actions container">
+						    <button onClick={this.onSubmit} type="submit" className="btn">Sign in</button>
+						</div>
+					</form>
+					</div>
+					<div className="login-footer">
+					<a href="/register">Become our client!</a>
+					</div>
+				</div>
+			</div>
 
-                            <div id="password" className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input onChange={this.onChange} className="mdl-textfield__input" type="password" name="password" noValidate/>
-                                <label className="mdl-textfield__label" htmlFor="password">Password</label>
-                                <span className="mdl-textfield__error"></span>
-                            </div>
-
-                            <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox">
-                                <input checked={this.state.remember} onChange={this.onChange} type="checkbox" id="checkbox" className="mdl-checkbox__input" name="remember"/>
-                                <span className="mdl-checkbox__label">Remember me</span>
-                            </label>
-
-                            <div className="mdl-grid">
-                                <div className="mdl-layout-spacer"></div>
-                                <div className="mdl-layout-spacer"></div>
-                                <button onClick={this.onSubmit} id="signin" className="mdl-cell mdl-cell--4-col mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Sign in</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div className="mdl-layout-spacer"></div>
-            </div>
             <div id="snack" className="mdl-js-snackbar mdl-snackbar">
                 <div className="mdl-snackbar__text"></div>
                 <button className="mdl-snackbar__action" type="button"></button>

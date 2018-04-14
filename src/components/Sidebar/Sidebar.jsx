@@ -10,6 +10,21 @@ class Sidebar extends Component {
 
     constructor(props) {
         super(props)
+
+        this.LoadEnvs();
+        this.forceUpdate();
+    }
+
+    state = {
+        list: []
+    }
+
+    LoadEnvs() {
+        if (this.props.environments !== undefined) {
+            this.props.environments.forEach(e => {
+                this.state.list.push((<li><a href={"/environment/" + e.uuid}>{e.name}</a></li>))
+            })
+        }
     }
 
     render() {
@@ -44,35 +59,7 @@ class Sidebar extends Component {
 
                         <span className="sidebar-body">
                             <ul className="sidebar-menu">
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
-                                <li><a href="/environment/w">Environment 1</a></li>
-                                <li><a href="/environment/x">Environment 2</a></li>
-                                <li><a href="/environment/y">Environment 3</a></li>
-                                <li><a href="/environment/z">Environment 4</a></li>
+                                {this.state.list}
                             </ul>
                         </span>
                     </div>

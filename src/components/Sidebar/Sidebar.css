@@ -69,7 +69,8 @@
 
 .sidebar-content {
     position: fixed;
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     top: 0;
     left: 60px;
@@ -119,11 +120,22 @@
     border-radius: 4px;
 
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     color: #444;
 }
 
 .sidebar-menu li a:hover {
     background: rgba(0,0,0,.1);
+}
+
+.sidebar-menu li a.active {
+    color: #0747A6;
+    font-weight: 500;
+    background: rgba(0,0,0,.1);
+}
+
+.sidebar-menu li a.active:hover {
+    color: #0747A6;
 }
 
 .main-content {

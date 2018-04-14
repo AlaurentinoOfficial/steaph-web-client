@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import $ from 'jquery'
 
 import './DashboardPage.css'
+import Sidebar from '../Sidebar/Sidebar';
 
 class DashboardPage extends Component {
 
@@ -16,8 +17,11 @@ class DashboardPage extends Component {
 
     render() {
         return (
-            <div className="Dashboard">
-            </div>
+            <Sidebar>
+                <div className="Dashboard">
+                    Bla
+                </div>
+            </Sidebar>
         )
     }
 }

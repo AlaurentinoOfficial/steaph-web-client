@@ -1,3 +1,4 @@
 body.Dashboard {
     background: #fff !important;
+    z-index: 500;
 }

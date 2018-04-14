@@ -12,7 +12,6 @@ class Sidebar extends Component {
         super(props)
 
         this.LoadEnvs();
-        this.forceUpdate();
     }
 
     state = {
@@ -20,11 +19,14 @@ class Sidebar extends Component {
     }
 
     LoadEnvs() {
-        if (this.props.environments !== undefined) {
+        if (this.props.environments !== undefined)
             this.props.environments.forEach(e => {
                 this.state.list.push((<li><a href={"/environment/" + e.uuid}>{e.name}</a></li>))
             })
-        }
+    }
+
+    search = (e) => {
+        e.preventDefault()
     }
 
     render() {
@@ -67,6 +69,18 @@ class Sidebar extends Component {
                 <main className="main-content">
                     {this.props.children}
                 </main>
+                {/* <div className="search">
+                    <div className="search-content">
+                        <div className="search-header">
+                            <span className="search-title">Seach</span>
+                        </div>
+                        <div className="seach-body">
+                            <form>
+                                <input type="text"/>
+                            </form>
+                        </div>
+                    </div>
+                </div> */}
             </div>
         )
     }

@@ -19,14 +19,11 @@ class DashboardPage extends Component {
         return (
             <Sidebar
                 title="Dashboard"
-                environments={[
-                    {name: "Environment 1", uuid: "sfjgsdfjasdgfjads", is_active: true},
-                    {name: "Environment 2", uuid: "sfjgsdfjasdgfjads"},
-                    {name: "Environment 3", uuid: "sfjgsdfjasdgfjads"},
-                    {name: "Environment 4", uuid: "sfjgsdfjasdgfjads"}
-                ]}>
+                environments={[{name: "Environment 1", uuid: "sfjgsdfjasdgfjads", class: 'active'}]}>
                 <div className="Dashboard">
-                    Bla
+                    <div className="container">
+                        fg
+                    </div>
                 </div>
             </Sidebar>
         )

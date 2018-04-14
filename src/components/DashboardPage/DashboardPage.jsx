@@ -17,7 +17,8 @@ class DashboardPage extends Component {
 
     render() {
         return (
-            <Sidebar>
+            <Sidebar
+                title="Dashboard">
                 <div className="Dashboard">
                     Bla
                 </div>

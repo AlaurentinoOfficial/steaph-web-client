@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faUser, faPlus, faSearch, faAngleLeft  } from '@fortawesome/fontawesome-free-solid'
+import { faUser, faPlus, faSearch  } from '@fortawesome/fontawesome-free-solid'
 
 import logo from './google-logo.svg'
 import './Sidebar.css'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './Card.css'
 
-class EnvironmentPage extends Component {
+class Card extends Component {
 
     render() {
         return (
@@ -18,4 +18,4 @@ class EnvironmentPage extends Component {
     }
 }
 
-export default EnvironmentPage
+export default Card

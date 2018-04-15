@@ -66,12 +66,11 @@ class EnvironmentPage extends Component {
         super(props)
 
         if(localStorage.getItem('token') === null)
-            props.history.push('/login?redirect?environment')
+            props.history.push('/login')
         
         $('body').removeAttr('class').addClass('Environment')
 
         this.LoadEnv();
-        this.LoadOptions();
     }
 
     LoadEnv() {
@@ -86,7 +85,7 @@ class EnvironmentPage extends Component {
     }
 
     LoadOptions() {
-        this.state.list = [
+        return [
             (
                 <li>
                     <a href={"/environment/" + this.props.match.params.id+ "/overview"} className="active">
@@ -110,7 +109,7 @@ class EnvironmentPage extends Component {
                         <span>Settings</span>
                     </a>
                 </li>
-            ),
+            )
         ]
     }
 
@@ -121,8 +120,8 @@ class EnvironmentPage extends Component {
     render() {
         return (
             <Sidebar
-                title="Environment"
-                list={this.state.list}>
+                title={this.state.name}
+                list={this.LoadOptions()}>
                 <div className="Environment">
                     <div className="content">
                         <div className="env-graph">

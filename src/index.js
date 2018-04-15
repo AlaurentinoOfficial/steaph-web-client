@@ -7,6 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import LoginPage from './components/LoginPage/LoginPage.jsx'
 import DashboardPage from './components/DashboardPage/DashboardPage';
 import EnvironmentPage from './components/EnvironmentPage/EnvironmentPage';
+import SchedulePage from './components/SchedulePage/SchedulePage';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -17,6 +18,7 @@ ReactDOM.render( (
         <Route path="/login" component={LoginPage}/>
         <Route path="/dashboard" component={DashboardPage}/>
         <Route path="/environment/:id/overview" component={EnvironmentPage}/>
+        <Route path="/environment/:id/schedule" component={SchedulePage}/>
         <Route path="*" component={()=>(<h1>Not found</h1>)}/>
     </Switch>
 </BrowserRouter>

@@ -4,6 +4,7 @@ import { faCouch } from '@fortawesome/fontawesome-free-solid'
 import $ from 'jquery'
 
 import './DashboardPage.css'
+import {Environments} from '../../services/Request'
 import Sidebar from '../Sidebar/Sidebar';
 
 class DashboardPage extends Component {
@@ -23,13 +24,22 @@ class DashboardPage extends Component {
     }
 
     LoadEnvs() {
+        Environments(localStorage.getItem('token'))
+        .then(json => {
+            if(true) {
+                json.forEach(e => {
+                    this.state.list.push((
+                        <li>
+                            <a href={"/environment/" + e.uuid + "/overview"}><FontAwesomeIcon icon={faCouch} /> {e.name}</a>
+                        </li>
+                    ))
+                })
 
-        envs.forEach(e => {
-            this.state.list.push((
-                <li>
-                    <a href={"/environment/" + e.uuid}><FontAwesomeIcon icon={faCouch} /> {e.name}</a>
-                </li>
-            ))
+                this.forceUpdate()
+            }
+        })
+        .catch(err => {
+
         })
     }
 

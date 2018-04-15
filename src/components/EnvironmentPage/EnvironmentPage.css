@@ -1,3 +1,9 @@
 .content {
-    background: red
+    background: rgba(0, 0, 0, .1)
+}
+
+.env-graph {
+    height: 300px;
+
+    border-radius: 4px;
 }

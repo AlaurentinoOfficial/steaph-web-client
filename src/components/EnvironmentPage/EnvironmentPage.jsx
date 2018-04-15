@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Line} from 'react-chartjs-2';
 import $ from 'jquery'
 
 import './EnvironmentPage.css'
@@ -14,7 +15,7 @@ class EnvironmentPage extends Component {
         
         $('body').removeAttr('class').addClass('Environment')
 
-        console.log(this.props.id)
+        console.log(this.props.match.params.id)
     }
 
     render() {
@@ -24,7 +25,10 @@ class EnvironmentPage extends Component {
                 <div className="Environment">
                     <div className="container">
                         <div className="content">
-                            r
+                            <div className="env-graph">
+                                <Line
+                                    height={90}/>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,23 @@
+
+.card-fill-blue {
+    background: rgb(9, 68, 157) !important;
+}
+
+.card-fill-blue > .card-header {
+    color: #fff;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-header {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    color: #444;
+
+    background: transparent !important;
+    border: none !important;
+}

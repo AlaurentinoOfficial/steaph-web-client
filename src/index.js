@@ -16,7 +16,7 @@ ReactDOM.render( (
     <Switch>
         <Route path="/login" component={LoginPage}/>
         <Route path="/dashboard" component={DashboardPage}/>
-        <Route path="/environment/:id" component={EnvironmentPage}/>
+        <Route path="/environment/:id/overview" component={EnvironmentPage}/>
         <Route path="*" component={()=>(<h1>Not found</h1>)}/>
     </Switch>
 </BrowserRouter>

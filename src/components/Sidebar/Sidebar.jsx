@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import account from './account.svg'
-import search from './search.svg'
-import add from './plus.svg'
-import logo from './google-logo.svg'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faUser, faPlus, faSearch, faAngleLeft  } from '@fortawesome/fontawesome-free-solid'
 
+import logo from './google-logo.svg'
 import './Sidebar.css'
 
 class Sidebar extends Component {
@@ -14,23 +13,23 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div className="Sidebar">
+            <div className="page-container">
                 <div className="sidebar">
                     <div className="sidebar-helper">
                         <ul className="sidebar-menu-helper">
                             <li>
-                                <a href="/dashboard"><img  src={logo} alt="logo"/></a>
+                                <a href="/dashboard"><img src={logo} alt="steaph"/></a>
                             </li>
                             <li className="small">
-                                <a href="#search"><img  src={search} alt="search"/></a>
+                                <a href="#search"><FontAwesomeIcon icon={faSearch} /></a>
                             </li>
                             <li className="small">
-                                <a href="/environment/add"><img  src={add} alt="add"/></a>
+                                <a href="/environment/add"><FontAwesomeIcon icon={faPlus} /></a>
                             </li>
                         </ul>
                         <ul className="sidebar-menu-helper sidebar-menu-down">
                             <li>
-                                <a href="/account"><img  src={account} alt="account"/></a>
+                                <a href="/account"><FontAwesomeIcon icon={faUser} /></a>
                             </li>
                         </ul>
                     </div>
@@ -49,9 +48,6 @@ class Sidebar extends Component {
                         </span>
                     </div>
                 </div>
-                <main className="main-content">
-                    {this.props.children}
-                </main>
                 {/* <div className="search">
                     <div className="search-content">
                         <div className="search-header">
@@ -64,6 +60,9 @@ class Sidebar extends Component {
                         </div>
                     </div>
                 </div> */}
+                <main className="main-content">
+                    {this.props.children}
+                </main>
             </div>
         )
     }

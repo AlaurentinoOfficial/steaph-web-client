@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-// import './Card.css'
+import './Card.css'
 
 class EnvironmentPage extends Component {
 
     render() {
         return (
-            <div className="card">
+            <div className={"card" + " " + this.props.className}>
                 <div className="card-header">
                     {this.props.title}
                 </div>

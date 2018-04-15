@@ -4,6 +4,18 @@
 
 .env-graph {
     height: 300px;
-
     border-radius: 4px;
+}
+
+.environment-property {
+    margin: 5px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #555;
+}
+
+.highlight {
+    font-weight: 700;
+    color: #444;
 }

@@ -8,23 +8,6 @@ import './Sidebar.css'
 
 class Sidebar extends Component {
 
-    constructor(props) {
-        super(props)
-
-        this.LoadEnvs();
-    }
-
-    state = {
-        list: []
-    }
-
-    LoadEnvs() {
-        if (this.props.environments !== undefined)
-            this.props.environments.forEach(e => {
-                this.state.list.push((<li><a href={"/environment/" + e.uuid}>{e.name}</a></li>))
-            })
-    }
-
     search = (e) => {
         e.preventDefault()
     }
@@ -61,7 +44,7 @@ class Sidebar extends Component {
 
                         <span className="sidebar-body">
                             <ul className="sidebar-menu">
-                                {this.state.list}
+                                {this.props.list}
                             </ul>
                         </span>
                     </div>

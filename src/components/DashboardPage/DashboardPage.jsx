@@ -13,13 +13,29 @@ class DashboardPage extends Component {
             props.history.push('/login?redirect?dashboard')
         
         $('body').removeAttr('class').addClass('Dashboard')
+        this.LoadEnvs()
+    }
+
+    state = {
+        list: []
+    }
+
+    LoadEnvs() {
+        let envs = [
+            {name: "Environment 1", uuid: "sfjgsdfjasdgfjads", class: 'active'},
+            {name: "Environment 2", uuid: "sfjgsdfjasdgfjads"}
+        ]
+
+        envs.forEach(e => {
+            this.state.list.push((<li><a href={"/environment/" + e.uuid}>{e.name}</a></li>))
+        })
     }
 
     render() {
         return (
             <Sidebar
                 title="Dashboard"
-                environments={[{name: "Environment 1", uuid: "sfjgsdfjasdgfjads", class: 'active'}]}>
+                list={this.state.list}>
                 <div className="Dashboard">
                     <div className="container">
                         hj

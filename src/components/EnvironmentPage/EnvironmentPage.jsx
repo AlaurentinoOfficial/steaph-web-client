@@ -5,6 +5,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faClock, faAlignLeft, faSlidersH } from '@fortawesome/fontawesome-free-solid'
 
 import './EnvironmentPage.css'
+import {EnvironmentById} from '../../services/Request'
 import Sidebar from '../Sidebar/Sidebar';
 import Card from '../Card/Card'
 
@@ -31,7 +32,7 @@ const data = {
         pointRadius: 4,
         pointHitRadius: 10,
         scaleFontColor: "#fff",
-        data: [0, 120, 80, 100, 56, 55, 40]
+        data: [0, 120, 80]
     }]
 };
 
@@ -69,16 +70,26 @@ class EnvironmentPage extends Component {
         
         $('body').removeAttr('class').addClass('Environment')
 
-        console.log(this.props.match.params.id)
-
+        this.LoadEnv();
         this.LoadOptions();
+    }
+
+    LoadEnv() {
+        EnvironmentById(localStorage.getItem('token'), this.props.match.params.id)
+        .then(json => {
+            this.setState(json)
+            this.forceUpdate()
+        })
+        .catch(err => {
+            this.props.history.push('/dashboard')
+        })
     }
 
     LoadOptions() {
         this.state.list = [
             (
                 <li>
-                    <a href={"/environment/" + this.props.match.params.id+ "/overview"} class="active">
+                    <a href={"/environment/" + this.props.match.params.id+ "/overview"} className="active">
                         <FontAwesomeIcon icon={faAlignLeft} />
                         <span>Overview</span>
                     </a>
@@ -117,16 +128,16 @@ class EnvironmentPage extends Component {
                         <div className="env-graph">
                             <Card title="Status">
                                 <div className="environment-property">
-                                    <span className="highlight">NAME:</span> Tal
+                                    <span className="highlight">NAME:</span> {this.state.name}
                                 </div>
                                 <div className="environment-property">
-                                    <span className="highlight">UUID:</span> sdflsdkfiuh9rhsf23urhoksodu9
+                                    <span className="highlight">UUID:</span> {this.state.uuid}
                                 </div>
                                 <div className="environment-property">
-                                    <span className="highlight">KEY:</span> dsh9ew8ufhwef9jsdhfjhdsifhsd
+                                    <span className="highlight">KEY:</span> {this.state.key}
                                 </div>
                                 <div className="environment-property">
-                                    <span className="highlight">STATUS:</span> Actived
+                                    <span className="highlight">STATUS:</span> {this.state.status}
                                 </div>
                             </Card>
                             <Card title="Economy" className="card-fill-blue">

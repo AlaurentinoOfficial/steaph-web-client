@@ -26,7 +26,7 @@ class DashboardPage extends Component {
     LoadEnvs() {
         Environments(localStorage.getItem('token'))
         .then(json => {
-            if(true) {
+            if(json.constructor === [].constructor) {
                 json.forEach(e => {
                     this.state.list.push((
                         <li>
@@ -37,9 +37,6 @@ class DashboardPage extends Component {
 
                 this.forceUpdate()
             }
-        })
-        .catch(err => {
-
         })
     }
 

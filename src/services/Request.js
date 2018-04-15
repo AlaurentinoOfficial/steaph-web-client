@@ -29,6 +29,20 @@ exports.Environments = (token) => {
     })
 }
 
+exports.EnvironmentById = (token, uuid) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/environment/' + uuid, {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+            }
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}
+
 exports.Schedules = (token, id) => {
     return new Promise((resolve, reject) => {
         fetch('http://localhost:8080/environment/' + id + '/schedule', {

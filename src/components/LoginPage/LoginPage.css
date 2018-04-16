@@ -38,7 +38,8 @@ body.Login {
     margin: 0 !important;
 }
 
-.form-group input.form-control {
+.form-group input.form-control,
+.form-group select.form-control {
     width: 100%;
     height: 40px;
 
@@ -55,11 +56,15 @@ body.Login {
 
 .form-group input.form-control::-moz-placeholder,
 .form-group input.form-control:-ms-input-placeholder,
-.form-group input.form-control::-webkit-input-placeholder {
+.form-group input.form-control::-webkit-input-placeholder,
+.form-group select.form-control::-moz-placeholder,
+.form-group select.form-control:-ms-input-placeholder,
+.form-group select.form-control::-webkit-input-placeholder {
     color: #707781;
 }
 
-.form-group input.form-control:focus {
+.form-group input.form-control:focus,
+.form-group select.form-control:focus {
     background-color: #fff;
     border-color: #3498db;
 }

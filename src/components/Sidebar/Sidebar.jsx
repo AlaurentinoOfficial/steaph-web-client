@@ -1,14 +1,44 @@
 import React, { Component } from 'react'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faUser, faPlus, faSearch  } from '@fortawesome/fontawesome-free-solid'
+import $ from 'jquery'
 
 import logo from './google-logo.svg'
 import './Sidebar.css'
+
+import { AddEnvironments } from '../../services/Request'
 
 class Sidebar extends Component {
 
     search = (e) => {
         e.preventDefault()
+    }
+
+    state = {
+        name: "",
+        uuid: "",
+        key: ""
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+
+        AddEnvironments(localStorage.getItem('token'), this.state)
+        .then(json => {
+            console.log(json)
+            $("#AddEnv").removeClass('show')
+            $(".modal-backdrop.fade.show").remove()
+        })
+        .catch(err => {
+            $("#AddEnv").removeClass('show')
+            $(".modal-backdrop.fade.show").remove()
+        })
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     render() {
@@ -24,7 +54,7 @@ class Sidebar extends Component {
                                 <a href="#search"><FontAwesomeIcon icon={faSearch} /></a>
                             </li>
                             <li className="small">
-                                <a href="/environment/add"><FontAwesomeIcon icon={faPlus} /></a>
+                                <a href="/environment/add" data-toggle="modal" data-target="#AddEnv"><FontAwesomeIcon icon={faPlus} /></a>
                             </li>
                         </ul>
                         <ul className="sidebar-menu-helper sidebar-menu-down">
@@ -48,18 +78,38 @@ class Sidebar extends Component {
                         </span>
                     </div>
                 </div>
-                {/* <div className="search">
-                    <div className="search-content">
-                        <div className="search-header">
-                            <span className="search-title">Seach</span>
+                <div className="modal fade" id="AddEnv" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Add new environment</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div className="seach-body">
-                            <form>
-                                <input type="text"/>
+                        <div className="modal-body">
+                            <form className="small">
+                                <div className="form-group">
+                                    <span className="highlight">Name:</span><br/>
+                                    <input onChange={e => this.onChange(e)} value={this.state.name} className="form-control placeholder-no-fix" max="25" type="text" autoComplete="off" name="name"/>
+                                </div>
+                                <div className="form-group">
+                                    <span className="highlight">UUID:</span><br/>
+                                    <input onChange={e => this.onChange(e)} value={this.state.uuid} className="form-control placeholder-no-fix" min="25" max="25" type="text" autoComplete="off" name="uuid"/>
+                                </div>
+                                <div className="form-group">
+                                    <span className="highlight">Key:</span><br/>
+                                    <input onChange={e => this.onChange(e)} value={this.state.key} className="form-control placeholder-no-fix" min="25" max="25" type="text" autoComplete="off" name="key"/>
+                                </div>
                             </form>
                         </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button onClick={e => this.onSubmit(e)} type="button" className="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
                     </div>
-                </div> */}
+                </div>
                 <main className="main-content">
                     {this.props.children}
                 </main>

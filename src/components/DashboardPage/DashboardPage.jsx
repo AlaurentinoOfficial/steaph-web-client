@@ -38,6 +38,9 @@ class DashboardPage extends Component {
                 this.forceUpdate()
             }
         })
+        .catch(err => {
+            console.log("dsf")
+        })
     }
 
     render() {

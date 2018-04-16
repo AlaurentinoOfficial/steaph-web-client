@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {Line} from 'react-chartjs-2';
-import $ from 'jquery'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faClock, faAlignLeft, faSlidersH } from '@fortawesome/fontawesome-free-solid'
+import $ from 'jquery'
 
-import './EnvironmentPage.css'
+import './OverviewPage.css'
 import {EnvironmentById} from '../../services/Request'
 import Sidebar from '../Sidebar/Sidebar';
 import Card from '../Card/Card'
@@ -60,7 +60,7 @@ const whiteOption = {
     }
 };
 
-class EnvironmentPage extends Component {
+class OverviewPage extends Component {
 
     constructor(props) {
         super(props)
@@ -119,38 +119,36 @@ class EnvironmentPage extends Component {
 
     render() {
         return (
-            <Sidebar
-                title={this.state.name}
-                list={this.LoadOptions()}>
-                <div className="Environment">
-                    <div className="content">
-                        <div className="env-graph">
-                            <Card title="Status">
-                                <div className="environment-property">
-                                    <span className="highlight">NAME:</span> {this.state.name}
-                                </div>
-                                <div className="environment-property">
-                                    <span className="highlight">UUID:</span> {this.state.uuid}
-                                </div>
-                                <div className="environment-property">
-                                    <span className="highlight">KEY:</span> {this.state.key}
-                                </div>
-                                <div className="environment-property">
-                                    <span className="highlight">STATUS:</span> {this.state.status}
-                                </div>
-                            </Card>
-                            <Card title="Economy" className="card-fill-blue">
-                                <Line
-                                    data={data}
-                                    options={whiteOption}
-                                    height={90}/>
-                            </Card>
-                        </div>
+            <div>
+                <Sidebar
+                    title={this.state.name}
+                    list={this.LoadOptions()}>
+                    <div className="Environment">
+                        <Card title="Status">
+                            <div className="environment-property">
+                                <span className="highlight">NAME:</span> {this.state.name}
+                            </div>
+                            <div className="environment-property">
+                                <span className="highlight">UUID:</span> {this.state.uuid}
+                            </div>
+                            <div className="environment-property">
+                                <span className="highlight">KEY:</span> {this.state.key}
+                            </div>
+                            <div className="environment-property">
+                                <span className="highlight">STATUS:</span> {this.state.status}
+                            </div>
+                        </Card>
+                        <Card title="Economy" className="card-fill-blue">
+                            <Line
+                                data={data}
+                                options={whiteOption}
+                                height={90}/>
+                        </Card>
                     </div>
-                </div>
-            </Sidebar>
+                </Sidebar>
+            </div>
         )
     }
 }
 
-export default EnvironmentPage
+export default OverviewPage

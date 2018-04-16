@@ -43,6 +43,23 @@ exports.EnvironmentById = (token, uuid) => {
     })
 }
 
+exports.AddEnvironments = (token, env) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/environment', {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(env)
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}
+
 exports.Schedules = (token, id) => {
     return new Promise((resolve, reject) => {
         fetch('http://localhost:8080/environment/' + id + '/schedule', {
@@ -50,6 +67,23 @@ exports.Schedules = (token, id) => {
             headers: {
                 'Authorization': token,
             }
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}
+
+exports.AddSchedules = (token, id, schedule) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:8080/environment/' + id + '/schedule', {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(schedule)
         })
         .then(response => response.json())
         .then(json => resolve(json))

@@ -28,6 +28,7 @@ class Sidebar extends Component {
             console.log(json)
             $("#AddEnv").removeClass('show')
             $(".modal-backdrop.fade.show").remove()
+            this.forceUpdate();
         })
         .catch(err => {
             $("#AddEnv").removeClass('show')

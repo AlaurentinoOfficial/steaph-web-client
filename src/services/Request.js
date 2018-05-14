@@ -1,7 +1,7 @@
 
 exports.Login = (objectRequest) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/login', {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -17,7 +17,7 @@ exports.Login = (objectRequest) => {
 
 exports.Environments = (token) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment', {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment', {
             method: 'GET',
             headers: {
                 'Authorization': token,
@@ -31,8 +31,22 @@ exports.Environments = (token) => {
 
 exports.EnvironmentById = (token, uuid) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + uuid, {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + uuid, {
             method: 'GET',
+            headers: {
+                'Authorization': token,
+            }
+        })
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(err => reject(err))
+    })
+}
+
+exports.RemoveEnvironmentById = (token, uuid) => {
+    return new Promise((resolve, reject) => {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + uuid, {
+            method: 'DELETE',
             headers: {
                 'Authorization': token,
             }
@@ -45,7 +59,7 @@ exports.EnvironmentById = (token, uuid) => {
 
 exports.AddEnvironments = (token, env) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment', {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment', {
             method: 'POST',
             headers: {
                 'Authorization': token,
@@ -62,7 +76,7 @@ exports.AddEnvironments = (token, env) => {
 
 exports.Schedules = (token, id) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + id + '/schedule', {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + id + '/schedule', {
             method: 'GET',
             headers: {
                 'Authorization': token,
@@ -76,7 +90,7 @@ exports.Schedules = (token, id) => {
 
 exports.AddSchedules = (token, id, schedule) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + id + '/schedule', {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/environment/' + id + '/schedule', {
             method: 'POST',
             headers: {
                 'Authorization': token,
@@ -93,7 +107,7 @@ exports.AddSchedules = (token, id, schedule) => {
 
 exports.RemoveSchedules = (token, id) => {
     return new Promise((resolve, reject) => {
-        fetch('http://http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/schedule/' + id, {
+        fetch('http://ec2-18-204-229-11.compute-1.amazonaws.com:8080/schedule/' + id, {
             method: 'DELETE',
             headers: {
                 'Authorization': token,

@@ -5,7 +5,7 @@ import { faClock, faAlignLeft, faSlidersH } from '@fortawesome/fontawesome-free-
 import $ from 'jquery'
 
 import './OverviewPage.css'
-import {EnvironmentById} from '../../services/Request'
+import {RemoveEnvironmentById, EnvironmentById} from '../../services/Request'
 import Sidebar from '../Sidebar/Sidebar';
 import Card from '../Card/Card'
 
@@ -116,6 +116,18 @@ class OverviewPage extends Component {
     state = {
         list: []
     }
+    
+    onDelete(e) {
+        e.preventDefault();
+        
+        RemoveEnvironmentById(localStorage.getItem('token'), this.props.match.params.id)
+        .then(json => {
+            this.props.history.push('/dashboard')
+        })
+        .catch(err => {
+            this.props.history.push('/dashboard')
+        })
+    }
 
     render() {
         return (
@@ -136,6 +148,9 @@ class OverviewPage extends Component {
                             </div>
                             <div className="environment-property">
                                 <span className="highlight">STATUS:</span> {this.state.status}
+                            </div>
+                            <div className="environment-property">
+                                <button className="btn btn-large btn-danger" onClick={ e => this.onDelete(e)}>Delete this environment</button>
                             </div>
                         </Card>
                         <Card title="Economy" className="card-fill-blue">

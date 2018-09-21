@@ -106,6 +106,7 @@ class SchedulePage extends Component {
 
         RemoveSchedules(localStorage.getItem('token'), id)
         .then(json => {
+            console.log(json)
             this.LoadEnv();
         })
         .catch(err => {

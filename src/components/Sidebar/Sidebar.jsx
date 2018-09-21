@@ -16,8 +16,7 @@ class Sidebar extends Component {
 
     state = {
         name: "",
-        uuid: "",
-        key: ""
+        device_id: ""
     }
 
     onSubmit = (e) => {
@@ -25,7 +24,6 @@ class Sidebar extends Component {
 
         AddEnvironments(localStorage.getItem('token'), this.state)
         .then(json => {
-            console.log(json)
             $("#AddEnv").removeClass('show')
             $(".modal-backdrop.fade.show").remove()
             this.forceUpdate();
@@ -95,12 +93,8 @@ class Sidebar extends Component {
                                     <input onChange={e => this.onChange(e)} value={this.state.name} className="form-control placeholder-no-fix" max="25" type="text" autoComplete="off" name="name"/>
                                 </div>
                                 <div className="form-group">
-                                    <span className="highlight">UUID:</span><br/>
-                                    <input onChange={e => this.onChange(e)} value={this.state.uuid} className="form-control placeholder-no-fix" min="25" max="25" type="text" autoComplete="off" name="uuid"/>
-                                </div>
-                                <div className="form-group">
-                                    <span className="highlight">Key:</span><br/>
-                                    <input onChange={e => this.onChange(e)} value={this.state.key} className="form-control placeholder-no-fix" min="25" max="25" type="text" autoComplete="off" name="key"/>
+                                    <span className="highlight">Device:</span><br/>
+                                    <input onChange={e => this.onChange(e)} value={this.state.device_id} className="form-control placeholder-no-fix" type="text" autoComplete="off" name="device_id"/>
                                 </div>
                             </form>
                         </div>

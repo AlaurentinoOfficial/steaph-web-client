@@ -30,7 +30,7 @@ class DashboardPage extends Component {
                 json.forEach(e => {
                     this.state.list.push((
                         <li>
-                            <a href={"/environment/" + e.uuid + "/overview"}><FontAwesomeIcon icon={faCouch} /> {e.name}</a>
+                            <a href={"/environment/" + e._id + "/overview"}><FontAwesomeIcon icon={faCouch} /> {e.name}</a>
                         </li>
                     ))
                 })
